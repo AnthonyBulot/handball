@@ -1,0 +1,4 @@
+services:
+#    hb_handball.example:
+#        class: HB\HandballBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
