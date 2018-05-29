@@ -1,0 +1,20 @@
+<?php
+// src/OC/PlatformBundle/Entity/Application.php
+
+namespace HB\HandballBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * @ORM\Table(name="handball_category")
+ * @ORM\Entity(repositoryClass="OC\PlatformBundle\Entity\CategoryRepository")
+ */
+class Category
+{
+  /**
+   * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Advert", inversedBy="category")
+   * @ORM\JoinColumn(nullable=false)
+   */
+  private $posts;
+
+  // …
+}
