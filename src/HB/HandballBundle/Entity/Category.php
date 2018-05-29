@@ -20,7 +20,7 @@ class Category
     private $id;
     
   /**
-   * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Posts", inversedBy="category")
+   * @ORM\OneToMany(targetEntity="HB\HandballBundle\Entity\Posts", mappedBy="category")
    * @ORM\JoinColumn(nullable=false)
    */
   private $posts;
@@ -35,24 +35,43 @@ class Category
         return $this->id;
     }
 
+
     /**
-     * Set posts
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add post
      *
-     * @param \HB\HandballBundle\Entity\Posts $posts
+     * @param \HB\HandballBundle\Entity\Posts $post
      *
      * @return Category
      */
-    public function setPosts(\HB\HandballBundle\Entity\Posts $posts)
+    public function addPost(\HB\HandballBundle\Entity\Posts $post)
     {
-        $this->posts = $posts;
+        $this->posts[] = $post;
 
         return $this;
     }
 
     /**
+     * Remove post
+     *
+     * @param \HB\HandballBundle\Entity\Posts $post
+     */
+    public function removePost(\HB\HandballBundle\Entity\Posts $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
      * Get posts
      *
-     * @return \HB\HandballBundle\Entity\Posts
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getPosts()
     {

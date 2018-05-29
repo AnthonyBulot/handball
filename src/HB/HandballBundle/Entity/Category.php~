@@ -10,11 +10,30 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Category
 {
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
   /**
-   * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Advert", inversedBy="category")
+   * @ORM\OneToMany(targetEntity="HB\HandballBundle\Entity\Posts", mappedBy="category")
    * @ORM\JoinColumn(nullable=false)
    */
   private $posts;
 
-  // …
+    /**
+    * Get id
+    *
+    * @return int
+    */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+
 }

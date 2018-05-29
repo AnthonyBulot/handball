@@ -42,7 +42,7 @@ class Posts
     private $image;
     
     /**
-    * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Category", mappedBy="posts")
+    * @ORM\ManyToOne(targetEntity="HB\HandballBundle\Entity\Category", inversedBy="posts")
     * @ORM\JoinColumn(nullable=false)
     */
     private $category;
@@ -130,6 +130,7 @@ class Posts
     }
 
 
+
     /**
      * Set category
      *
@@ -141,8 +142,8 @@ class Posts
     {
         $this->category = $category;
         
-        $category->setPosts($this);
-        
+        $category->addPost($this);
+
         return $this;
     }
 
