@@ -6,7 +6,7 @@ namespace HB\HandballBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Table(name="handball_category")
- * @ORM\Entity(repositoryClass="OC\PlatformBundle\Entity\CategoryRepository")
+ * @ORM\Entity(repositoryClass="HB\HandballBundle\Repository\CategoryRepository")
  */
 class Category
 {
@@ -24,6 +24,13 @@ class Category
    * @ORM\JoinColumn(nullable=false)
    */
   private $posts;
+  
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
 
     /**
     * Get id
@@ -76,5 +83,29 @@ class Category
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Category
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

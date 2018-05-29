@@ -24,6 +24,13 @@ class Category
    * @ORM\JoinColumn(nullable=false)
    */
   private $posts;
+  
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     */
+    private $name;
 
     /**
     * Get id
@@ -36,4 +43,45 @@ class Category
     }
 
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add post
+     *
+     * @param \HB\HandballBundle\Entity\Posts $post
+     *
+     * @return Category
+     */
+    public function addPost(\HB\HandballBundle\Entity\Posts $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post
+     *
+     * @param \HB\HandballBundle\Entity\Posts $post
+     */
+    public function removePost(\HB\HandballBundle\Entity\Posts $post)
+    {
+        $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
 }

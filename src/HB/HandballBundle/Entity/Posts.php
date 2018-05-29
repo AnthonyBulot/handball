@@ -42,7 +42,7 @@ class Posts
     private $image;
     
     /**
-    * @ORM\ManyToOne(targetEntity="HB\HandballBundle\Entity\Category", inversedBy="posts")
+    * @ORM\ManyToOne(targetEntity="HB\HandballBundle\Entity\Category", cascade={"persist"}, inversedBy="posts")
     * @ORM\JoinColumn(nullable=false)
     */
     private $category;

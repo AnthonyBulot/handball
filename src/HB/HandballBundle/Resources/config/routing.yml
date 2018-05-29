@@ -1,3 +1,16 @@
 hb_handball_homepage:
-    path:     /
-    defaults: { _controller: HBHandballBundle:Default:index }
+    path:     /ajout/post
+    defaults: { _controller: HBHandballBundle:Posts:index }
+    
+hb_handball_add_category:
+    path:     /ajout/category
+    defaults: { _controller: HBHandballBundle:Posts:addCategory }
+
+hb_handball_category:
+    path:     /category
+    defaults: { _controller: HBHandballBundle:Posts:category }
+    
+hb_handball_onlyOneCategory:
+    path:     /category/{id}
+    defaults: 
+        _controller: HBHandballBundle:Posts:listPost 
