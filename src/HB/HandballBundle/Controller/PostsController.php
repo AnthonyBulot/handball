@@ -12,7 +12,12 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PostsController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request){
+        
+     return $this->render('HBHandballBundle:view:home.html.twig');
+    }
+    
+    public function addPostAction(Request $request)
     {
         $post = new Posts;
         $form = $this->get('form.factory')->create(PostsType::class, $post);
@@ -25,7 +30,7 @@ class PostsController extends Controller
             return $this->redirectToRoute('hb_handball_homepage');
         }
 
-        return $this->render('HBHandballBundle:view:index.html.twig', array(
+        return $this->render('HBHandballBundle:view:form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -42,7 +47,7 @@ class PostsController extends Controller
             return $this->redirectToRoute('hb_handball_homepage');
         }
 
-        return $this->render('HBHandballBundle:view:index.html.twig', array(
+        return $this->render('HBHandballBundle:view:form.html.twig', array(
             'form' => $form->createView(),
         ));
     }
@@ -67,10 +72,41 @@ class PostsController extends Controller
                 ->getPostWithCategory($id);
         
         
-        var_dump($posts);
         return $this->render('HBHandballBundle:view:listPost.html.twig', array(
             'posts' => $posts,
         ));
+    }
+    
+        public function postAction($id) {
+        $post = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('HBHandballBundle:Posts')
+                ->find($id);
+        
+        
+        return $this->render('HBHandballBundle:view:onePost.html.twig', array(
+            'post' => $post,
+        ));
+    }
+    
+    public function searchAction(Request $request) {
+        if ($request->isMethod('POST')) {
+           $search = '%' . $_POST['recherche'] . '%';
+            $posts = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('HBHandballBundle:Posts')
+                ->searchPost($search);
+            
+            var_dump($posts);
+            
+            return $this->render('HBHandballBundle:view:listPost.html.twig', array(
+            'posts' => $posts,
+            ));
+        } 
+        
+        return $this->redirectToRoute('hb_handball_homepage');
     }
 }
 

@@ -1,22 +1,11 @@
 {# empty Twig template #}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "HBHandballBundle::layout.html.twig" %}  
 
-    <title>{% block title %}Alopéo{% endblock %}</title>
-
-    {% block stylesheets %}
-      {# On charge le CSS de bootstrap depuis le site directement #}
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    {% endblock %}
-  </head>
-
-  <body>    
+{% block body %}
     <div>
         {% for categories in category%}
-            <p>{{ categories.name }}</p>
+            <p><a href="{{ path('hb_handball_onlyOneCategory', {'id':categories.id}) }}">{{ categories.name }}</a></p>
         {% endfor %}
     </div>
   </body>
+{% endblock %} 

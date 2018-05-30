@@ -36,7 +36,7 @@ class Posts
     private $content;
     
     /**
-    * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Image", cascade={"persist"})
+    * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Image", cascade={"persist", "remove"})
     * @ORM\JoinColumn(nullable=false) 
     */
     private $image;

@@ -1,6 +1,10 @@
 hb_handball_homepage:
-    path:     /ajout/post
+    path:     /
     defaults: { _controller: HBHandballBundle:Posts:index }
+
+hb_handball_add_post:
+    path:     /ajout/post
+    defaults: { _controller: HBHandballBundle:Posts:addPost }
     
 hb_handball_add_category:
     path:     /ajout/category
@@ -14,3 +18,14 @@ hb_handball_onlyOneCategory:
     path:     /category/{id}
     defaults: 
         _controller: HBHandballBundle:Posts:listPost 
+        
+hb_handball_onlyOne:
+    path:     /post/{id}
+    defaults: 
+            _controller: HBHandballBundle:Posts:post 
+        
+ 
+hb_handball_search:
+    path:     /recherche
+    defaults: 
+            _controller: HBHandballBundle:Posts:search
