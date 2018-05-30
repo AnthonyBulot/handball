@@ -4,11 +4,11 @@ hb_handball_homepage:
 
 hb_handball_add_post:
     path:     /ajout/post
-    defaults: { _controller: HBHandballBundle:Posts:addPost }
+    defaults: { _controller: HBHandballBundle:Admin:addPost }
     
 hb_handball_add_category:
     path:     /ajout/category
-    defaults: { _controller: HBHandballBundle:Posts:addCategory }
+    defaults: { _controller: HBHandballBundle:Admin:addCategory }
 
 hb_handball_category:
     path:     /category
@@ -27,9 +27,14 @@ hb_handball_onlyOne:
 hb_handball_updatePost:
     path:     /post/modification/{id}
     defaults: 
-            _controller: HBHandballBundle:Posts:update
+            _controller: HBHandballBundle:Admin:update
             
 hb_handball_search:
     path:     /recherche
     defaults: 
             _controller: HBHandballBundle:Posts:search
+            
+hb_handball_admin:
+    path:     /administration
+    defaults: 
+            _controller: HBHandballBundle:Admin:admin

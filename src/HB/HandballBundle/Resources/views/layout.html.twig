@@ -32,6 +32,13 @@
         
     </div>
     <footer>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <p>Connecté en tant que {{ app.user.username }}</p>
+            <a href="{{ path('hb_handball_admin') }}">Page Administration</a>
+            <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+        {% else %}
+        <a href="{{ path('fos_user_security_login') }}">Connexion</a>
+        {% endif %}
         <p>Ce site a été fait sous Symfony 3.4</p>
     </footer>
 

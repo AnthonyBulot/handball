@@ -12,46 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class PostsController extends Controller
 {
-    public function indexAction(Request $request){
+    public function indexAction(){
         
      return $this->render('HBHandballBundle:view:home.html.twig');
     }
-    
-    public function addPostAction(Request $request)
-    {
-        $post = new Posts;
-        $form = $this->get('form.factory')->create(PostsType::class, $post);
-        
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
-
-            return $this->redirectToRoute('hb_handball_homepage');
-        }
-
-        return $this->render('HBHandballBundle:view:form.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-    
-    public function addCategoryAction(Request $request) {
-        $category = new Category;
-        $form = $this->get('form.factory')->create(CategoryAddType::class, $category);
-        
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
-            $em->flush();
-
-            return $this->redirectToRoute('hb_handball_homepage');
-        }
-
-        return $this->render('HBHandballBundle:view:form.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
-    
+       
     public function categoryAction() {
         $category = $this
                 ->getDoctrine()
@@ -109,26 +74,5 @@ class PostsController extends Controller
         return $this->redirectToRoute('hb_handball_homepage');
     }
     
-    public function updateAction(Request $request, $id) {
-        $post = $this
-                ->getDoctrine()
-                ->getManager()
-                ->getRepository('HBHandballBundle:Posts')
-                ->find($id);
-        
-        $form = $this->get('form.factory')->create(PostsType::class, $post);
-        
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($post);
-            $em->flush();
-
-            return $this->redirectToRoute('hb_handball_homepage');
-        }
-
-        return $this->render('HBHandballBundle:view:form.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
 }
 
