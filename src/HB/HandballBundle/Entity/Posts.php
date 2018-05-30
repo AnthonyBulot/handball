@@ -3,6 +3,7 @@
 namespace HB\HandballBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Posts
@@ -25,6 +26,7 @@ class Posts
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255, unique=true)
+     * @Assert\NotBlank
      */
     private $title;
 
@@ -32,18 +34,21 @@ class Posts
      * @var string
      *
      * @ORM\Column(name="content", type="text")
+     * @Assert\NotBlank
      */
     private $content;
     
     /**
     * @ORM\OneToOne(targetEntity="HB\HandballBundle\Entity\Image", cascade={"persist", "remove"})
     * @ORM\JoinColumn(nullable=false) 
+    * @Assert\Valid()
     */
     private $image;
     
     /**
     * @ORM\ManyToOne(targetEntity="HB\HandballBundle\Entity\Category", cascade={"persist"}, inversedBy="posts")
     * @ORM\JoinColumn(nullable=false)
+    * @Assert\Valid()
     */
     private $category;
 

@@ -24,7 +24,11 @@ hb_handball_onlyOne:
     defaults: 
             _controller: HBHandballBundle:Posts:post 
         
- 
+hb_handball_updatePost:
+    path:     /post/modification/{id}
+    defaults: 
+            _controller: HBHandballBundle:Posts:update
+            
 hb_handball_search:
     path:     /recherche
     defaults: 

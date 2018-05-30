@@ -3,6 +3,7 @@ namespace HB\HandballBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="handball_image")
@@ -22,12 +23,12 @@ class Image
   /**
    * @ORM\Column(name="url", type="string", length=255)
    */
-  private $url;
+  private $url = 'Pas de Photos';
   
   /**
    * @ORM\Column(name="alt", type="string", length=255)
    */
-  private $alt;
+  private $alt = 'Pas de Photos';
   
   /**
    * @var UploadedFile

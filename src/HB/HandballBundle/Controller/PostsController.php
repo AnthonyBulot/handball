@@ -108,5 +108,27 @@ class PostsController extends Controller
         
         return $this->redirectToRoute('hb_handball_homepage');
     }
+    
+    public function updateAction(Request $request, $id) {
+        $post = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('HBHandballBundle:Posts')
+                ->find($id);
+        
+        $form = $this->get('form.factory')->create(PostsType::class, $post);
+        
+        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+
+            return $this->redirectToRoute('hb_handball_homepage');
+        }
+
+        return $this->render('HBHandballBundle:view:form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 }
 
