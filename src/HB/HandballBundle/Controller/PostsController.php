@@ -64,8 +64,6 @@ class PostsController extends Controller
                 ->getRepository('HBHandballBundle:Posts')
                 ->searchPost($search);
             
-            var_dump($posts);
-            
             return $this->render('HBHandballBundle:view:listPost.html.twig', array(
             'posts' => $posts,
             ));
