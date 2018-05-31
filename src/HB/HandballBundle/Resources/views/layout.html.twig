@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% block title %}Alopéo{% endblock %}</title>
+    <title>{% block title %}HandStory{% endblock %}</title>
 
     {% block stylesheets %}
       {# On charge le CSS de bootstrap depuis le site directement #}
@@ -17,7 +17,7 @@
   <body>
         <header class="row">
             <p  class="col-lg-offset-1 col-lg-3"><a href="{{ path('hb_handball_homepage') }}"><img id="logo" src="{{ asset('image/logo_handstory.png') }}" alt="Logo"/></a></p>
-            <p class="col-lg-offset-3 col-lg-1 menu" ><a  class="lienMenu" href="{{ path('hb_handball_category') }}">Catégories</a></p>
+            <p class="col-lg-offset-3 col-lg-1 menu2" ><a  class="lienMenu" href="{{ path('hb_handball_category') }}">Catégories</a></p>
             <div class="col-lg-4 menu">
                 <form action="{{ path('hb_handball_search') }}" method="post" class="form-inline">
                     <div class="input-append">

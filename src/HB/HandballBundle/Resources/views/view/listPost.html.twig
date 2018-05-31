@@ -4,11 +4,15 @@
 {% block body %}
     <div>
         {% for post in posts%}
-            <p>{{ post.title}}</p>
-            <p>{{ post.content}}</p>
-            <p><img src="{{ asset(post.image.uploadDir ~ '/' ~ post.image.id ~ '.' ~ post.image.url) }}" alt='{{ post.image.alt}}' /></p>
-            <p>{{ post.category.name}}</p>
-            <p><a href="{{ path('hb_handball_onlyOne', {'id':post.id}) }}">Voir plus...</a></p>
+            {% if loop.index == 1 %}
+                <h1 class="center titreCategory">{{ post.category.name }}</h1>
+            {% endif %}
+            <div class="row post">
+                <h3 class="col-lg-12 center titrePost">{{ post.title}}</h3>
+                <p class="col-lg-12 center"><a class="lienPost" href="{{ path('hb_handball_onlyOne', {'id':post.id}) }}">Voir plus...</a></p>
+                <p class="col-lg-12 center photoPost"><img src="{{ asset(post.image.uploadDir ~ '/' ~ post.image.id ~ '.' ~ post.image.url) }}" alt='{{ post.image.alt}}' /></p>
+                
+            </div>
             
         {% endfor %}
     </div>
