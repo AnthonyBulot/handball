@@ -1,0 +1,15 @@
+{# empty Twig template #}
+{% extends "HBHandballBundle::layout.html.twig" %}  
+
+{% block body %}
+    <div>
+        {% for categories in category%}
+            <div class="row">
+                <p class="col-lg-3">{{ categories.name }}</p>
+                <p class="col-lg-3"><a href="{{ path('hb_handball_category_update', {'id':categories.id}) }}">Modifier</a></p>
+                <p class="col-lg-3"><a href="{{ path('hb_handball_category_delete', {'id':categories.id}) }}">Supprimer</a></p>
+            </div>
+        {% endfor %}
+    </div>
+  </body>
+{% endblock %} 

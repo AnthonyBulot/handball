@@ -3,11 +3,11 @@
 
 {% block body %}
     <div>
-            <p>{{ post.title}}</p>
-            <p>{{ post.content}}</p>
-            <p><img src="{{ asset(post.image.uploadDir ~ '/' ~ post.image.id ~ '.' ~ post.image.url) }}" alt='{{ post.image.alt }}' /></p>
-            <p>{{ post.category.name}}</p>
-            
+            <p class="col-lg-12 center photoPost"><img src="{{ asset(post.image.uploadDir ~ '/' ~ post.image.id ~ '.' ~ post.image.url) }}" alt='{{ post.image.alt }}' /></p>
+            <p class="col-lg-12 center titrePost">{{ post.title}}</p>
+            <p class="col-lg-12 center contentPost">{{ post.content}}</p>    
+            <p class="col-lg-12"><a class="lienUpdatePost" href="{{ path('hb_handball_updatePost', {'id':post.id}) }}">Modifier</a></p>
+            <p class="col-lg-12"><a class="lienUpdatePost" href="{{ path('hb_handball_delete', {'id':post.id}) }}">Supprimer</a></p>
     </div>
 
 {% endblock %}           

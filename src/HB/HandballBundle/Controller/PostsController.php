@@ -36,6 +36,9 @@ class PostsController extends Controller
                 ->getRepository('HBHandballBundle:Posts')
                 ->getPostWithCategory($id);
         
+        if($posts === array()){
+            $posts = null;
+        }
         
         return $this->render('HBHandballBundle:view:listPost.html.twig', array(
             'posts' => $posts,
@@ -63,6 +66,10 @@ class PostsController extends Controller
                 ->getManager()
                 ->getRepository('HBHandballBundle:Posts')
                 ->searchPost($search);
+            
+            if($posts === array()){
+                $posts = null;
+            }
             
             return $this->render('HBHandballBundle:view:listPost.html.twig', array(
             'posts' => $posts,

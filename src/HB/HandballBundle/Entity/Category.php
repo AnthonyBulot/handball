@@ -21,7 +21,7 @@ class Category
     private $id;
     
   /**
-   * @ORM\OneToMany(targetEntity="HB\HandballBundle\Entity\Posts", mappedBy="category")
+   * @ORM\OneToMany(targetEntity="HB\HandballBundle\Entity\Posts", mappedBy="category", cascade={"remove"})
    * @ORM\JoinColumn(nullable=false)
    */
   private $posts;

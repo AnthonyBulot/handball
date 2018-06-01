@@ -38,3 +38,21 @@ hb_handball_admin:
     path:     /administration
     defaults: 
             _controller: HBHandballBundle:Admin:admin
+            
+hb_handball_delete:
+    path:     /supprimer/{id}
+    defaults: 
+            _controller: HBHandballBundle:Admin:delete
+            
+            
+hb_handball_category_admin:
+    path:     /admin/category
+    defaults: { _controller: HBHandballBundle:Admin:category }
+    
+hb_handball_category_update:
+    path:     /admin/category/modification/{id}
+    defaults: { _controller: HBHandballBundle:Admin:updateCategory }
+    
+hb_handball_category_delete:
+    path:     /admin/category/supprimer/{id}
+    defaults: { _controller: HBHandballBundle:Admin:deleteCategory }
