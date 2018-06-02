@@ -4,7 +4,9 @@
 {% block body %}
     <div>
         {% for categories in category%}
-            <a class="lienCategory" href="{{ path('hb_handball_onlyOneCategory', {'id':categories.id}) }}"><p class="fondCategory col-lg-offset-1 col-lg-3">{{ categories.name }}</p></a>
+            <a class="lienCategory" href="{{ path('hb_handball_onlyOneCategory', {'id':categories.id}) }}">
+                <p class="fondCategory col-lg-offset-1 col-lg-3 col-md-offset-1 col-md-3 col-sm-offset-1 col-sm-4 col-xs-offset-2 col-xs-8">{{ categories.name }}</p>
+            </a>
         {% endfor %}
     </div>
   </body>

@@ -1,0 +1,151 @@
+body{
+    margin: auto
+}
+.block{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#logo{
+    height: 100px;
+    width: auto;
+}
+header{
+    padding-top: 10px;
+    border-bottom: 1px solid black
+}
+
+.lienMenu, .lienMenu:visited{
+    color: black;
+    padding-bottom: 15px;
+}
+.lienMenu:hover{
+    color: black;
+    text-decoration: none;
+    border-bottom: 3px solid rgb(0,3,128);
+}
+.menu2{
+    padding-top: 39px;
+}
+.menu{
+    padding-top: 35px;
+}
+.imgSlider{
+    text-align: center;
+    height: 600px !important;
+    width: auto;
+}
+.textSlide{
+    font-size: 2em;
+    color: rgb(0,3,128);
+    background: rgba(255, 255, 255, 0.7);
+    text-shadow: 2px 2px 2px gray;
+}
+.post{
+    border: 1px solid #b3b3b3;
+    margin-bottom: 30px;
+    background: #d9d9d9;
+}
+.photoPost{
+    margin-bottom: 30px;
+   
+}
+.taillePhotoPost{
+    width: 800px;
+    height: auto;
+}
+.titreCategory{
+    font-size: 3.5em;
+    text-decoration: underline;
+    margin-bottom: 25px;
+}
+.contentPost{
+    font-size: 1.3em;
+    margin-top: 20px;
+}
+.lienPost{
+    font-size: 1.5em;
+    color: white;
+    text-shadow: 2px 2px 2px gray;
+}
+.lienPost:hover{
+    color: white;
+}
+.lienUpdatePost,.lienUpdatePost:hover, .lienUpdatePost:visited{
+    color: black
+}
+.titrePost{
+    color: rgb(0,3,128);
+    font-size: 2.5em;
+    text-decoration: underline;
+}
+.fondCategory{
+    border: solid 1px black;
+    height: 200px;
+    text-align: center;
+    padding-top: 80px;
+    margin-top: 20px;
+    background: url("http://www.fondsecran.eu/a/get_photo/59066/1920/1080");
+}
+.lienCategory, .lienCategory:hover, .lienCategory:visited{
+    color: white;
+    text-decoration: white;
+    font-size: 1.3em;
+    font-family: Arial;
+    height: 150px;
+}
+footer, footer p, footer a{
+    padding-top: 15px;
+    background: #5d5d5d;
+    color: white;
+}
+.center{
+    text-align: center;
+}
+.connected{
+    font-size: 1.2em;
+}
+footer a:hover, footer a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+@media all and (max-width: 992px)
+{
+
+    .taillePhotoPost{
+        width: 600px;
+        height: auto;
+    }
+
+}
+
+@media all and (max-device-width: 480px)
+{
+    .container{
+        padding-left: 17px !important;
+        padding-right: 17px !important;
+    }
+    .photoPost{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .post{
+        width: 100%;
+        margin-left: 0px !important;
+    }
+    footer, header{
+        width: 100%;
+        margin-left: 0px !important;
+    }
+    .centerTel{
+        text-align: center;
+    }
+    .imgSlider{
+        height: auto !important;
+    }
+    .taillePhotoPost, .imgPost{
+        width: 300px;
+        height: auto;
+    }
+
+}
