@@ -15,7 +15,7 @@ hb_handball_category:
     defaults: { _controller: HBHandballBundle:Posts:category }
     
 hb_handball_onlyOneCategory:
-    path:     /category/{id}
+    path:     /category/{id}/page/{page}
     defaults: 
         _controller: HBHandballBundle:Posts:listPost 
         
@@ -33,6 +33,11 @@ hb_handball_search:
     path:     /recherche
     defaults: 
             _controller: HBHandballBundle:Posts:search
+
+hb_handball_search2:
+    path:     /recherche/{recherche}/page/{page}
+    defaults: 
+            _controller: HBHandballBundle:Posts:search2
             
 hb_handball_admin:
     path:     /administration

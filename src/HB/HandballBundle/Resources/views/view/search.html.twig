@@ -3,18 +3,21 @@
 
 {% block body %}
     <div>
+        {% if posts is  null %}
+            <p class="center">Désolé nous n'avons rien trouvé :(</p>
+        {% else %}
             {% for post in posts %}
-                {% if loop.index == 1 %}
-                    <h1 class="center titreCategory">{{ post.category.name }}</h1>
-                {% endif %}
                 <div class="row post">
                     <h3 class="col-lg-12 center titrePost">{{ post.title}}</h3>
                     <p class="col-lg-12 center"><a class="lienPost" href="{{ path('hb_handball_onlyOne', {'id':post.id}) }}">Voir plus...</a></p>
                     <p class="col-lg-12 center photoPost"><img class="taillePhotoPost" src="{{ asset(post.image.uploadDir ~ '/' ~ post.image.id ~ '.' ~ post.image.url) }}" alt='{{ post.image.alt}}' /></p>    
                 </div>     
-            {% endfor %} 
+            {% endfor %}
+        {% endif %}      
     </div>
 
+    {% if posts is  null %}
+    {% else %}
     <div class="row">
         <p class="pagination">Page : 
 
@@ -25,7 +28,7 @@
                     [ {{ loop.index }} ]
      
                 {% else %}
-                    <a href="{{ path('hb_handball_onlyOneCategory', {'page':loop.index, 'id':catId}) }}">
+                    <a href="{{ path('hb_handball_search2', {'page':loop.index, 'recherche':recherche}) }}">
                         {{ loop.index }}
                     </a>
 
@@ -33,5 +36,5 @@
             {% endfor %}
         </p>
     </div>
-
-{% endblock %} 
+    {% endif %}
+{% endblock %}

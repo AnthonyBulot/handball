@@ -29,23 +29,50 @@ class PostsController extends Controller
         ));
     }
     
-    public function listPostAction($id) {
-        $posts = $this
+    public function listPostAction($id, $page) {
+        $repository = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('HBHandballBundle:Posts')
-                ->getPostWithCategory($id);
+                ->getRepository('HBHandballBundle:Posts');
+
         
-        if($posts === array()){
-            $posts = null;
+        $totalEntry = $repository->totalPosts($id);
+
+        $numberPages=ceil($totalEntry/5);
+
+        if(isset($page)) {
+            $currentPage=intval($page);
+ 
+            if($currentPage>$numberPages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+            {
+                $currentPage=$numberPages;
+            }
         }
+        else // Sinon
+        {
+            $currentPage = 1; // La page actuelle est la n°1    
+        }
+
+        $firstEntry=($currentPage - 1) * 5; // On calcul la première entrée à lire
+
+
+        for($i=1; $i<=$numberPages; $i++){
+            $number[] = $i;
+        }
+
+        $posts = $repository->getPostWithCategory($id, $firstEntry);
+
         
         return $this->render('HBHandballBundle:view:listPost.html.twig', array(
             'posts' => $posts,
+            'currentPage' => $currentPage,
+            'numberPages' =>$number,
+            'catId' =>$id,
         ));
     }
     
-        public function postAction($id) {
+    public function postAction($id) {
+
         $post = $this
                 ->getDoctrine()
                 ->getManager()
@@ -59,25 +86,122 @@ class PostsController extends Controller
     }
     
     public function searchAction(Request $request) {
-        if ($request->isMethod('POST')) {
-           $search = '%' . $_POST['recherche'] . '%';
-            $posts = $this
+
+
+            $search = '%' . $_POST['recherche'] . '%';
+            
+
+            $repository = $this
                 ->getDoctrine()
                 ->getManager()
-                ->getRepository('HBHandballBundle:Posts')
-                ->searchPost($search);
-            
+                ->getRepository('HBHandballBundle:Posts');
+
+            $totalEntry = $repository->totalPostSearch($search);
+
+            $numberPages=ceil($totalEntry/5);
+
+            $page = 1;
+
+            if(isset($page)) {
+                $currentPage=intval($page);
+ 
+                if($currentPage>$numberPages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+                {
+                    $currentPage=$numberPages;
+                }
+            }
+            else // Sinon
+            {
+                $currentPage = 1; // La page actuelle est la n°1    
+            }
+
+            $firstEntry=($currentPage - 1) * 5; // On calcul la première entrée à lire
+
+
+            for($i=1; $i<=$numberPages; $i++){
+                $number[] = $i;
+            }
+
+            ;
+
+            $posts = $repository->testSearch($search);
+
             if($posts === array()){
                 $posts = null;
+
+                return $this->render('HBHandballBundle:view:search.html.twig', array(
+                'posts' => $posts,
+                ));
+
             }
-            
-            return $this->render('HBHandballBundle:view:listPost.html.twig', array(
-            'posts' => $posts,
-            ));
-        } 
-        
-        return $this->redirectToRoute('hb_handball_homepage');
+            else{
+                $posts = $repository->searchPost($search, $firstEntry);
+
+                return $this->render('HBHandballBundle:view:search.html.twig', array(
+                'posts' => $posts,
+                'currentPage' => $currentPage,
+                'numberPages' =>$number,
+                'recherche' => $_POST['recherche'],
+                ));
+            }
     }
     
+    public function search2Action(Request $request, $page, $recherche) {
+
+            $search = '%' . $recherche . '%';
+            
+
+            $repository = $this
+                ->getDoctrine()
+                ->getManager()
+                ->getRepository('HBHandballBundle:Posts');
+
+            $totalEntry = $repository->totalPostSearch($search);
+
+            $numberPages=ceil($totalEntry/5);
+
+            if(isset($page)) {
+                $currentPage=intval($page);
+ 
+                if($currentPage>$numberPages) // Si la valeur de $pageActuelle (le numéro de la page) est plus grande que $nombreDePages...
+                {
+                    $currentPage=$numberPages;
+                }
+            }
+            else // Sinon
+            {
+                $currentPage = 1; // La page actuelle est la n°1    
+            }
+
+            $firstEntry=($currentPage - 1) * 5; // On calcul la première entrée à lire
+
+
+            for($i=1; $i<=$numberPages; $i++){
+                $number[] = $i;
+            }
+
+            ;
+
+            $posts = $repository->testSearch($search);
+
+            if($posts === array()){
+                $posts = null;
+
+                return $this->render('HBHandballBundle:view:search.html.twig', array(
+                'posts' => $posts,
+                ));
+
+            }
+            else{
+                $posts = $repository->searchPost($search, $firstEntry);
+
+                return $this->render('HBHandballBundle:view:search.html.twig', array(
+                'posts' => $posts,
+                'currentPage' => $currentPage,
+                'numberPages' =>$number,
+                'recherche' => $recherche,
+                ));
+            }
+    }
 }
 
